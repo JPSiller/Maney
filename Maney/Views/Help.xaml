@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:ext="clr-namespace:Capuchinos.Maney.Extensions;assembly=Capuchinos.Maney"
+                 x:Class="Capuchinos.Maney.Views.Help">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" Spacing="5" Padding="5" BackgroundColor="Wheat">
+            <Label Text="{ext:Translate BalanceTitle}" FontSize="Small" FontAttributes="Bold"></Label>
+            <Label Text="{ext:Translate BalanceHelp}" FontSize="Small" LineBreakMode="WordWrap"></Label>
+            <Label Text="{ext:Translate HistoryTitle}" FontSize="Small" FontAttributes="Bold"></Label>
+            <Label FontSize="Small" LineBreakMode="WordWrap">
+                <Label.Text>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="{ext:Translate HistoryHelp}"/>
+                        <On Platform="iOS" Value="{ext:Translate HistoryHelpIOS}"/>
+                    </OnPlatform>
+                </Label.Text>
+            </Label>
+            <Label Text="{ext:Translate IncomeTitle}" FontSize="Small" FontAttributes="Bold"></Label>
+            <Label Text="{ext:Translate IncomeHelp}" FontSize="Small" LineBreakMode="WordWrap"></Label>
+            <Label Text="{ext:Translate OutcomeTitle}" FontSize="Small" FontAttributes="Bold"></Label>
+            <Label Text="{ext:Translate OutcomeHelp}" FontSize="Small" LineBreakMode="WordWrap"></Label>
+            <Label Text="{ext:Translate Categories}" FontSize="Small" FontAttributes="Bold"></Label>
+            <Label FontSize="Small" LineBreakMode="WordWrap">
+                <Label.Text>
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="{ext:Translate CategoriesHelp}"/>
+                        <On Platform="iOS" Value="{ext:Translate CategoriesHelpIOS}"/>
+                    </OnPlatform>
+                </Label.Text>
+            </Label>
+            <Label Text="{ext:Translate SettingsTitle}" FontSize="Small" FontAttributes="Bold"></Label>
+            <Label Text="{ext:Translate SettingsHelp}" FontSize="Small" LineBreakMode="WordWrap"></Label>
+            <Button Text="{ext:Translate Accept}" Command="{Binding CloseCommand}" BackgroundColor="#3AA7F9" VerticalOptions="EndAndExpand" TextColor="Black"></Button>
+        </StackLayout>
+    </ScrollView>
+</pages:PopupPage>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ext="clr-namespace:Capuchinos.Maney.Extensions"
+             xmlns:fresh="clr-namespace:FreshEssentials;assembly=FreshEssentials"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:cnv="clr-namespace:Capuchinos.Maney.Converters;assembly=Capuchinos.Maney"
+             xmlns:cr="clr-namespace:Capuchinos.Maney.CustomRenderers;assembly=Capuchinos.Maney"
+             x:Class="Capuchinos.Maney.Views.IncomePage"
+             Icon="ic_income.png"
+             BackgroundColor="Wheat">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand EventName="Appearing" Command="{Binding AppearingCommand}" />
+            <b:EventToCommand EventName="Disappearing" Command="{Binding DisappearingCommand}" />
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cnv:StringToDecimalConverter x:Key="CnvStringToDecimal"></cnv:StringToDecimalConverter>
+            <cnv:IsPurchasedToRowHeightConverter x:Key="CnvIsPurchasedToRowHeight"></cnv:IsPurchasedToRowHeightConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding IsPurchased, Converter={StaticResource CnvIsPurchasedToRowHeight}}"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <cr:AdMobView Grid.Row="0" Grid.Column="0" WidthRequest="320" HeightRequest="50" IsVisible="{Binding IsPurchased}"></cr:AdMobView>
+            <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" VerticalOptions="FillAndExpand">
+                <Image Source="{ext:ImageResource IncomeBanner.png}" HeightRequest="50" Aspect="AspectFill"></Image>
+            </StackLayout>
+            <ScrollView Grid.Row="2" Grid.Column="0">
+                <StackLayout  HorizontalOptions="FillAndExpand" Padding="5">
+                    <StackLayout.Spacing>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="10"/>
+                            <On Platform="Android" Value="4" />
+                        </OnPlatform>
+                    </StackLayout.Spacing>
+                    <cr:ExtendedEntry IsValid="{Binding IsNameValid}" Text="{Binding Name, Mode=TwoWay}" Placeholder="{ext:Translate Name}" HorizontalOptions="FillAndExpand">
+                        <cr:ExtendedEntry.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Cornsilk"/>
+                            </OnPlatform>
+                        </cr:ExtendedEntry.BackgroundColor>
+                    </cr:ExtendedEntry>
+                    <cr:ExtendedEntry x:Name="OneWayQuantity" IsValid="{Binding IsQuantityValid}" Keyboard="Numeric" Text="{Binding Quantity, Mode=OneWayToSource, Converter={StaticResource CnvStringToDecimal}}" Placeholder="{ext:Translate Quantity}" HorizontalOptions="FillAndExpand">
+                        <cr:ExtendedEntry.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Cornsilk"/>
+                            </OnPlatform>
+                        </cr:ExtendedEntry.BackgroundColor>
+                    </cr:ExtendedEntry>
+                    <fresh:BindablePicker ItemsSource="{Binding Categories}" DisplayProperty="Name" SelectedIndex="{Binding CategoryIndex, Mode=TwoWay}" Title="{ext:Translate SelectCategory}" HorizontalOptions="FillAndExpand">
+                        <fresh:BindablePicker.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Cornsilk"/>
+                            </OnPlatform>
+                        </fresh:BindablePicker.BackgroundColor>
+                    </fresh:BindablePicker>
+                    <fresh:BindablePicker ItemsSource="{Binding Currencies}" DisplayProperty="Name" SelectedIndex="{Binding CurrencyIndex, Mode=TwoWay}" Title="{ext:Translate SelectCurrency}" HorizontalOptions="FillAndExpand">
+                        <fresh:BindablePicker.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Cornsilk"/>
+                            </OnPlatform>
+                        </fresh:BindablePicker.BackgroundColor>
+                    </fresh:BindablePicker>
+                    <DatePicker Date="{Binding Date, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                        <DatePicker.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Cornsilk"/>
+                            </OnPlatform>
+                        </DatePicker.BackgroundColor>
+                    </DatePicker>
+                    <TimePicker Time="{Binding Time, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                        <TimePicker.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Cornsilk"/>
+                            </OnPlatform>
+                        </TimePicker.BackgroundColor>
+                    </TimePicker>
+                    <Button Command="{Binding InsertCommand}" BackgroundColor="#30B55C" Text="{ext:Translate Save}" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" TextColor="Black"></Button>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:ext="clr-namespace:Capuchinos.Maney.Extensions;assembly=Capuchinos.Maney"
+             xmlns:cnv="clr-namespace:Capuchinos.Maney.Converters;assembly=Capuchinos.Maney"
+             xmlns:fresh="clr-namespace:FreshEssentials;assembly=FreshEssentials"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             xmlns:cr="clr-namespace:Capuchinos.Maney.CustomRenderers;assembly=Capuchinos.Maney"
+             x:Class="Capuchinos.Maney.Views.BalancePage"
+             Icon="ic_balance.png"
+             BackgroundColor="Wheat">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand EventName="Appearing" Command="{Binding AppearingCommand}" />
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cnv:StringToDecimalConverter x:Key="CnvStringToDecimalConverter"></cnv:StringToDecimalConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <cr:AdMobView WidthRequest="320" HeightRequest="50" IsVisible="{Binding IsPurchased}"></cr:AdMobView>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                <StackLayout>
+                    <StackLayout.Spacing>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="10"/>
+                            <On Platform="Android" Value="0" />
+                        </OnPlatform>
+                    </StackLayout.Spacing>
+                    <DatePicker Date="{Binding Date, Mode=TwoWay}" HorizontalOptions="FillAndExpand" IsEnabled="{Binding IsDateEnabled}">
+                        <DatePicker.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Cornsilk"/>
+                            </OnPlatform>
+                        </DatePicker.BackgroundColor>
+                    </DatePicker>
+                    <fresh:BindablePicker ItemsSource="{Binding SortByOptions}" DisplayProperty="Name" SelectedIndex="{Binding SortByIndex, Mode=TwoWay}" Title="{ext:Translate SelectSortBy}" HorizontalOptions="FillAndExpand">
+                        <fresh:BindablePicker.BackgroundColor>
+                            <OnPlatform x:TypeArguments="Color">
+                                <On Platform="iOS" Value="Cornsilk"/>
+                            </OnPlatform>
+                        </fresh:BindablePicker.BackgroundColor>
+                    </fresh:BindablePicker>
+                </StackLayout>
+                <StackLayout BackgroundColor="#30B55C" HorizontalOptions="FillAndExpand">
+                    <Label FontAttributes="Bold" HorizontalOptions="Center" FontSize="Large" Text="{ext:Translate IncomeTitle}"></Label>
+                </StackLayout>
+                <Label Margin="5,0,0,0" TextColor="#30B55C" FontSize="Large" Text="{Binding Income, Converter={StaticResource CnvStringToDecimalConverter}, ConverterParameter=true}"></Label>
+                <StackLayout BackgroundColor="#F55255" HorizontalOptions="FillAndExpand">
+                    <Label FontAttributes="Bold" HorizontalOptions="Center" FontSize="Large" Text="{ext:Translate OutcomeTitle}"></Label>
+                </StackLayout>
+                <Label Margin="5,0,0,0" TextColor="#F55255" FontSize="Large" Text="{Binding Outcome, Converter={StaticResource CnvStringToDecimalConverter}, ConverterParameter=true}"></Label>
+                <StackLayout BackgroundColor="#3AA7F9" HorizontalOptions="FillAndExpand">
+                    <Label FontAttributes="Bold" HorizontalOptions="Center" FontSize="Large" Text="{ext:Translate Total}"></Label>
+                </StackLayout>
+                <Label Margin="5,0,0,0" TextColor="#3AA7F9" FontSize="Large" Text="{Binding Balance, Converter={StaticResource CnvStringToDecimalConverter}, ConverterParameter=true}"></Label>
+                <StackLayout BackgroundColor="SandyBrown" HorizontalOptions="FillAndExpand">
+                    <Label FontAttributes="Bold" HorizontalOptions="Center" FontSize="Large" Text="{ext:Translate Charts}"></Label>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                    <Label FontSize="Small" Text="{ext:Translate TransactionsPerCategory}" HorizontalOptions="Center"></Label>
+                    <oxy:PlotView Model="{Binding CategoryPieChart}" HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <BoxView BackgroundColor="Silver" HorizontalOptions="FillAndExpand" HeightRequest="1"></BoxView>
+                    <Label FontSize="Small" Text="{ext:Translate IncomePerCategory}" HorizontalOptions="Center"></Label>
+                    <oxy:PlotView Model="{Binding CategoryIncomePieChart}" HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Silver" HorizontalOptions="FillAndExpand" HeightRequest="1"></BoxView>
+                    <Label FontSize="Small" Text="{ext:Translate OutcomePerCategory}" HorizontalOptions="Center"></Label>
+                    <oxy:PlotView Model="{Binding CategoryOutcomePieChart}" HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Silver" HorizontalOptions="FillAndExpand" HeightRequest="1"></BoxView>
+                    <Label FontSize="Small" Text="{ext:Translate IncomeOutcomeChart}" HorizontalOptions="Center"></Label>
+                    <oxy:PlotView Model="{Binding IncomeOutcomeChart}" HeightRequest="200" WidthRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                    <Label Text="{ext:Translate AlwaysCalculatedPerYear}" FontSize="Micro" Margin="0,0,0,60"></Label>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

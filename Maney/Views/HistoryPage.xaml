@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ext="clr-namespace:Capuchinos.Maney.Extensions"
+             xmlns:fresh="clr-namespace:FreshEssentials;assembly=FreshEssentials"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:cnv="clr-namespace:Capuchinos.Maney.Converters;assembly=Capuchinos.Maney"
+             xmlns:cr="clr-namespace:Capuchinos.Maney.CustomRenderers;assembly=Capuchinos.Maney"
+             x:Class="Capuchinos.Maney.Views.HistoryPage"
+             Icon="ic_history.png"
+             BackgroundColor="Wheat">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand EventName="Appearing" Command="{Binding AppearingCommand}" />
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cnv:CurrencyNameToSymbolConverter x:Key="CnvCurrencyNameToSymbol"></cnv:CurrencyNameToSymbolConverter>
+            <cnv:TransactionTypeToColorConverter x:Key="CnvTransactionTypeToColor"></cnv:TransactionTypeToColorConverter>
+            <cnv:CurrencyNameToExchangeRateConverter x:Key="CnvCurrencyNameToExchangeRate"></cnv:CurrencyNameToExchangeRateConverter>
+            <cnv:UtcToLocalDateTimeConverter x:Key="CnvUtcToLocalDateTime"></cnv:UtcToLocalDateTimeConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <fresh:BindablePicker ItemsSource="{Binding SortByOptions}" DisplayProperty="Name" SelectedIndex="{Binding SortByIndex, Mode=TwoWay}" Title="{ext:Translate SelectSortBy}" HorizontalOptions="FillAndExpand">
+                <fresh:BindablePicker.BackgroundColor>
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="iOS" Value="Cornsilk"/>
+                    </OnPlatform>
+                </fresh:BindablePicker.BackgroundColor>
+            </fresh:BindablePicker>
+            <ListView x:Name="LstTransactions" ItemsSource="{Binding Transactions, Mode=TwoWay}" HasUnevenRows="True">
+                <ListView.SeparatorVisibility>
+                    <OnPlatform x:TypeArguments="SeparatorVisibility">
+                        <On Platform="iOS" Value="None"/>
+                    </OnPlatform>
+                </ListView.SeparatorVisibility>
+                <ListView.BackgroundColor>
+                    <OnPlatform x:TypeArguments="Color">
+                        <On Platform="iOS" Value="Wheat"/>
+                    </OnPlatform>
+                </ListView.BackgroundColor>
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding BindingContext.DeleteCommand, Source={x:Reference LstTransactions}}" CommandParameter="{Binding .}"
+                                          Text="{ext:Translate Delete}" IsDestructive="True" />
+                                <MenuItem Command="{Binding BindingContext.EditCommand, Source={x:Reference LstTransactions}}" CommandParameter="{Binding .}"
+                                          Text="{ext:Translate Edit}" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            <Grid Padding="5" BackgroundColor="{Binding TransactionType, Converter={StaticResource CnvTransactionTypeToColor}}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0" Padding="10,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Name}"></Label>
+                                    <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                                        <Label FontSize="Medium" Text="{Binding SelectedCurrency, Mode=OneWay, Converter={StaticResource CnvCurrencyNameToSymbol}}"></Label>
+                                        <Label FontSize="Medium" FontAttributes="Bold" Text="{Binding Quantity}"></Label>
+                                        <Label FontSize="Medium" Text="{Binding SelectedCurrency, StringFormat=' {0} '}"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <Label FontSize="Micro" Text="{Binding BaseCurrency, Mode=OneWay, Converter={StaticResource CnvCurrencyNameToSymbol}}"></Label>
+                                        <Label FontSize="Micro" Text="{Binding RealValue, StringFormat='{0:N4}'}"></Label>
+                                        <Label FontSize="Micro" Text="{Binding BaseCurrency, StringFormat=' {0} '}"></Label>
+                                    </StackLayout>
+                                    <Label FontSize="Micro" Text="{Binding ., Mode=OneWay, Converter={StaticResource CnvCurrencyNameToExchangeRate}}"></Label>
+                                </StackLayout>
+                                <StackLayout Grid.Row="0" Grid.Column="1" Spacing="0" Padding="20,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Category}" FontAttributes="Italic"></Label>
+                                    <Label Text="{Binding DateOfTransaction, Converter={StaticResource CnvUtcToLocalDateTime}, StringFormat='{0:MMMM dd, yyyy}'}"></Label>
+                                    <Label Text="{Binding TimeOfTransaction, StringFormat='{}{0:hh\\:mm\\:ss}'}"></Label>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

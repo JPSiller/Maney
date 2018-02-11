@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:ext="clr-namespace:Capuchinos.Maney.Extensions;assembly=Capuchinos.Maney"
+                 x:Class="Capuchinos.Maney.Views.CategorySave">
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Spacing="5" Padding="5" BackgroundColor="Wheat">
+        <Label Text="{ext:Translate Category}" FontSize="Medium"></Label>
+        <Entry x:Name="CategoryNameEntry" Text="{Binding Name}" HorizontalOptions="FillAndExpand"></Entry>
+        <StackLayout Orientation="Horizontal">
+            <Button BackgroundColor="#3AA7F9" Text="{ext:Translate Save}" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" TextColor="Black"></Button>
+            <Button BackgroundColor="#3AA7F9" Text="{ext:Translate Cancel}" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" TextColor="Black"></Button>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

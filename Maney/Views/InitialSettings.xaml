@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ext="clr-namespace:Capuchinos.Maney.Extensions"
+             xmlns:fresh="clr-namespace:FreshEssentials;assembly=FreshEssentials"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             x:Class="Capuchinos.Maney.Views.InitialSettings"
+             BackgroundColor="Wheat">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand EventName="Appearing" Command="{Binding AppearingCommand}" />
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Source="{ext:ImageResource Capuchinos.Maney.Images.common.ManeyBanner.png}" Aspect="AspectFill"></Image>
+        <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" Spacing="5" Padding="5">
+            <fresh:BindablePicker ItemsSource="{Binding Languages}" SelectedItem="{Binding DefaultLanguage}" DisplayProperty="Name"  Title="{ext:Translate SelectLanguage}" HorizontalOptions="FillAndExpand"></fresh:BindablePicker>
+            <fresh:BindablePicker ItemsSource="{Binding Currencies}" SelectedItem="{Binding DefaultCurrency}" DisplayProperty="Name" Title="{ext:Translate SelectCurrency}" HorizontalOptions="FillAndExpand"></fresh:BindablePicker>
+            <Button Command="{Binding StartCommand}" BackgroundColor="#30B55C" Image="ic_start.png" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"></Button>
+        </StackLayout>
+    </Grid>
+</ContentPage>

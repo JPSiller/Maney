@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ext="clr-namespace:Capuchinos.Maney.Extensions"
+             xmlns:b="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             xmlns:fresh="clr-namespace:FreshEssentials;assembly=FreshEssentials"
+             xmlns:cr="clr-namespace:Capuchinos.Maney.CustomRenderers;assembly=Capuchinos.Maney"
+             xmlns:cnv="clr-namespace:Capuchinos.Maney.Converters;assembly=Capuchinos.Maney"
+             x:Class="Capuchinos.Maney.Views.SettingsPage"
+             Icon="ic_settings.png"
+             BackgroundColor="Wheat">
+    <b:Interaction.Behaviors>
+        <b:BehaviorCollection>
+            <b:EventToCommand EventName="Appearing" Command="{Binding AppearingCommand}" />
+            <b:EventToCommand EventName="Disappearing" Command="{Binding DisappearingCommand}" />
+        </b:BehaviorCollection>
+    </b:Interaction.Behaviors>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cnv:IsPurchasedToRowHeightConverter x:Key="CnvIsPurchasedToRowHeight"></cnv:IsPurchasedToRowHeightConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding IsPurchased, Converter={StaticResource CnvIsPurchasedToRowHeight}}"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <cr:AdMobView Grid.Row="0" Grid.Column="0" WidthRequest="320" HeightRequest="50" IsVisible="{Binding IsPurchased}"></cr:AdMobView>
+            <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0">
+                <Image Source="{ext:ImageResource SettingsBanner.png}" HeightRequest="50" Aspect="AspectFill" HorizontalOptions="FillAndExpand"></Image>
+            </StackLayout>
+            <ScrollView Grid.Row="2" Grid.Column="0">
+                <StackLayout  HorizontalOptions="FillAndExpand">
+                    <StackLayout.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="0, 5, 0, 0"/>
+                        </OnPlatform>
+                    </StackLayout.Padding>
+                    <StackLayout Spacing="0" Padding="5">
+                        <fresh:BindablePicker ItemsSource="{Binding Languages}" SelectedIndex="{Binding LanguageIndex, Mode=TwoWay}" DisplayProperty="Name"  Title="{ext:Translate SelectLanguage}" HorizontalOptions="FillAndExpand">
+                            <fresh:BindablePicker.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="iOS" Value="Cornsilk"/>
+                                </OnPlatform>
+                            </fresh:BindablePicker.BackgroundColor>
+                        </fresh:BindablePicker>
+                    </StackLayout>
+                    <StackLayout Spacing="0" Padding="5">
+                        <fresh:BindablePicker ItemsSource="{Binding Currencies}" SelectedIndex="{Binding CurrencyIndex, Mode=TwoWay}" DisplayProperty="Name" Title="{ext:Translate SelectCurrency}" HorizontalOptions="FillAndExpand" IsEnabled="{Binding IsCurrencyEnabled}">
+                            <fresh:BindablePicker.BackgroundColor>
+                                <OnPlatform x:TypeArguments="Color">
+                                    <On Platform="iOS" Value="Cornsilk"/>
+                                </OnPlatform>
+                            </fresh:BindablePicker.BackgroundColor>
+                        </fresh:BindablePicker>
+                        <Label Text="{ext:Translate ConnectionRequired}" FontSize="Micro"></Label>
+                    </StackLayout>
+                    <StackLayout Padding="5" HorizontalOptions="FillAndExpand">
+                        <Button BackgroundColor="#3AA7F9" Text="{ext:Translate Help}" Command="{Binding HelpCommand}" TextColor="Black"></Button>
+                        <Button BackgroundColor="#3AA7F9" Text="{ext:Translate RemoveAds}" Command="{Binding PurchaseCommand}" TextColor="Black" IsVisible="{Binding IsPurchased}"></Button>
+                        <Label Text="{ext:Translate AlreadyPurchased}" HorizontalOptions="CenterAndExpand" FontSize="Micro"></Label>
+                        <Button BackgroundColor="#3AA7F9" Text="{ext:Translate RestorePurchase}" Command="{Binding RestorePurchaseCommand}" TextColor="Black"></Button>
+                    </StackLayout>
+                    <Image Source="{ext:ImageResource Capuchinos.Maney.Images.common.CapuchinosLogo.png}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
+                        <Image.VerticalOptions>
+                            <OnPlatform x:TypeArguments="LayoutOptions">
+                                <On Platform="iOS" Value="End"/>
+                                <On Platform="Android" Value="EndAndExpand"/>
+                            </OnPlatform>
+                        </Image.VerticalOptions>
+                        <Image.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="0,0,0,60"/>
+                            </OnPlatform>
+                        </Image.Margin>
+                    </Image>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

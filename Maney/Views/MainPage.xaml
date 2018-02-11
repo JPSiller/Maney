@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cr:CustomTabbedPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Capuchinos.Maney.Views;assembly=Capuchinos.Maney"
+    xmlns:cr="clr-namespace:Capuchinos.Maney.CustomRenderers;assembly=Capuchinos.Maney"
+    x:Class="Capuchinos.Maney.Views.MainPage"
+    BackgroundColor="Wheat">
+    <views:BalancePage></views:BalancePage>
+    <views:HistoryPage></views:HistoryPage>
+    <views:IncomePage></views:IncomePage>
+    <views:OutcomePage></views:OutcomePage>
+    <views:CategoriesPage></views:CategoriesPage>
+    <views:SettingsPage></views:SettingsPage>
+</cr:CustomTabbedPage>

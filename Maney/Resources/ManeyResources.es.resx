@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Categoría...</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Tiempo</value>
+  </data>
+  <data name="BalanceTitle" xml:space="preserve">
+    <value>Saldo</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="HistoryTitle" xml:space="preserve">
+    <value>Historial</value>
+  </data>
+  <data name="IncomeTitle" xml:space="preserve">
+    <value>Ingresos</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="OutcomeTitle" xml:space="preserve">
+    <value>Egresos</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="SelectCurrency" xml:space="preserve">
+    <value>Moneda...</value>
+  </data>
+  <data name="SelectSortBy" xml:space="preserve">
+    <value>Ordernar por...</value>
+  </data>
+  <data name="CategoryOption" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categorías</value>
+  </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Idioma...</value>
+  </data>
+  <data name="RebootRequired" xml:space="preserve">
+    <value>Requiere reiniciar la aplicación.</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>Empleo</value>
+  </data>
+  <data name="SelectInitialCurrency" xml:space="preserve">
+    <value>Currency/</value>
+  </data>
+  <data name="SelectInitialLanguage" xml:space="preserve">
+    <value>Language/Idioma</value>
+  </data>
+  <data name="Bills" xml:space="preserve">
+    <value>Facturas</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Charts" xml:space="preserve">
+    <value>Gráficos</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Todo</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Día</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Mes</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Año</value>
+  </data>
+  <data name="IncomeOutcomeChart" xml:space="preserve">
+    <value>Ingresos - Egreso</value>
+  </data>
+  <data name="MustHaveAtLeastOneCategory" xml:space="preserve">
+    <value>Debes seleccionar al menos una categoría</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ChangeCurrencyAlert" xml:space="preserve">
+    <value>Por favor no cierre la aplicación y mantener una conexión a internet mientras avanza el proceso de cambio de divisa base.</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Abr</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Ago</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>Dic</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Ene</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Jul</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Oct</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="AlwaysCalculatedPerYear" xml:space="preserve">
+    <value>El gráfico de líneas se calcula siempre por año seleccionado / actual.</value>
+  </data>
+  <data name="IncomePerCategory" xml:space="preserve">
+    <value>Ingresos por categoría</value>
+  </data>
+  <data name="OutcomePerCategory" xml:space="preserve">
+    <value>Egresos por categoría</value>
+  </data>
+  <data name="TransactionsPerCategory" xml:space="preserve">
+    <value>Transacciones por categoría</value>
+  </data>
+  <data name="NeedActiveConnection" xml:space="preserve">
+    <value>Guardar en moneda diferente a la base requiere una conexión a Internet.</value>
+  </data>
+  <data name="ConnectionRequired" xml:space="preserve">
+    <value>Requiere una conexión a Internet.</value>
+  </data>
+  <data name="Recent" xml:space="preserve">
+    <value>Recientes</value>
+  </data>
+  <data name="Oldest" xml:space="preserve">
+    <value>Más antiguas</value>
+  </data>
+  <data name="Lowest" xml:space="preserve">
+    <value>Más baja</value>
+  </data>
+  <data name="Highest" xml:space="preserve">
+    <value>Más alta</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Acerca De</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Ayuda</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Creado Por</value>
+  </data>
+  <data name="BalanceHelp" xml:space="preserve">
+    <value>Seleccione una fecha y elija visualizar por día mes o año. 
+Elegir "Todos" mostrará todas las transacciones sin importar la fecha.
+Gráfico de líneas se muestra siempre actual o seleccionado año.</value>
+  </data>
+  <data name="CategoriesHelp" xml:space="preserve">
+    <value>Presione y sostenga una categoría para editar o eliminar.
+Debe existir al menos una categoría.</value>
+  </data>
+  <data name="HistoryHelp" xml:space="preserve">
+    <value>Ordenar las transacciones por reciente primera, más antigua en primer lugar, mayor cantidad (en moneda base) primera, menor cantidad (divisa base) primero y la categoría.
+Mantenga oprimida una transacción para editar o eliminar.</value>
+  </data>
+  <data name="IncomeHelp" xml:space="preserve">
+    <value>Insertar o editar una transacción de ingresos en una moneda diferente de base requiere una conexión a internet.</value>
+  </data>
+  <data name="OutcomeHelp" xml:space="preserve">
+    <value>Insertar o editar una transacción de resultado en una moneda diferente de base requiere una conexión a internet.</value>
+  </data>
+  <data name="SettingsHelp" xml:space="preserve">
+    <value>Cambio del idioma requiere cerrar completamente la aplicación (desde el administrador de tareas) y comenzar otra vez.
+Cambio de divisa base requiere conexión a internet a través de todo el proceso.</value>
+  </data>
+  <data name="RemoveAds" xml:space="preserve">
+    <value>Remover Anuncios</value>
+  </data>
+  <data name="PurchaseProcessFailed" xml:space="preserve">
+    <value>No se puede completar la compra. Por favor, inténtelo de nuevo.</value>
+  </data>
+  <data name="ServiceUnavailable" xml:space="preserve">
+    <value>No se pudo conectar al servicio.</value>
+  </data>
+  <data name="CategoriesHelpIOS" xml:space="preserve">
+    <value>DESLICE a la izquierda una categoría para editar o eliminar.
+Debe existir al menos una categoría.</value>
+  </data>
+  <data name="HistoryHelpIOS" xml:space="preserve">
+    <value>Ordenar las transacciones por reciente primera, más antigua en primer lugar, mayor cantidad (en moneda base) primera, menor cantidad (divisa base) primero y la categoría.
+DESLICE una transacción para editar o borrar a la izquierda.</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>En proceso</value>
+  </data>
+  <data name="AlreadyPurchased" xml:space="preserve">
+    <value>¿Ya ha comprado?</value>
+  </data>
+  <data name="RestorePurchase" xml:space="preserve">
+    <value>Restaurar compra</value>
+  </data>
+  <data name="NoPurchaseFound" xml:space="preserve">
+    <value>No se ha encontrado el producto</value>
+  </data>
+  <data name="RestoreSuccess" xml:space="preserve">
+    <value>Las compras fueron restaurados con éxito.</value>
+  </data>
+</root>

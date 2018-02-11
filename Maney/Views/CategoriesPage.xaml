@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ext="clr-namespace:Capuchinos.Maney.Extensions;assembly=Capuchinos.Maney"
+             xmlns:cr="clr-namespace:Capuchinos.Maney.CustomRenderers;assembly=Capuchinos.Maney"
+             xmlns:cnv="clr-namespace:Capuchinos.Maney.Converters;assembly=Capuchinos.Maney"
+             x:Class="Capuchinos.Maney.Views.CategoriesPage"
+             Icon="ic_categories.png"
+             BackgroundColor="Wheat">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cnv:IsPurchasedToRowHeightConverter x:Key="CnvIsPurchasedToRowHeight"></cnv:IsPurchasedToRowHeightConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding IsPurchased, Converter={StaticResource CnvIsPurchasedToRowHeight}}"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <cr:AdMobView Grid.Row="0" Grid.Column="0" WidthRequest="320" HeightRequest="50" IsVisible="{Binding IsPurchased}"></cr:AdMobView>
+            <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0">
+                <Image Source="{ext:ImageResource CategoriesBanner.png}" HeightRequest="50" Aspect="AspectFill"></Image>
+            </StackLayout>
+            <StackLayout  HorizontalOptions="FillAndExpand" Grid.Row="2" Grid.Column="0"  Padding="5">
+                <ListView x:Name="LstCategories" ItemsSource="{Binding Categories, Mode=TwoWay}">
+                    <ListView.SeparatorVisibility>
+                        <OnPlatform x:TypeArguments="SeparatorVisibility">
+                            <On Platform="iOS" Value="None"/>
+                        </OnPlatform>
+                    </ListView.SeparatorVisibility>
+                    <ListView.BackgroundColor>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="iOS" Value="Wheat"/>
+                        </OnPlatform>
+                    </ListView.BackgroundColor>
+                    <x:Arguments>
+                        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                    </x:Arguments>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Command="{Binding BindingContext.DeleteCategoryCommand, Source={x:Reference LstCategories}}" CommandParameter="{Binding Name}"
+                                              Text="{ext:Translate Delete}" IsDestructive="True" />
+                                    <MenuItem Command="{Binding BindingContext.SaveCategoryCommand, Source={x:Reference LstCategories}}" CommandParameter="{Binding Name}"
+                                              Text="{ext:Translate Edit}" IsDestructive="True" />
+                                </ViewCell.ContextActions>
+                                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Name}"></Label>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button BackgroundColor="#3AA7F9" Text="{ext:Translate New}" Command="{Binding SaveCategoryCommand}" TextColor="Black">
+                    <Button.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="0,0,0,60"/>
+                        </OnPlatform>
+                    </Button.Margin>
+                </Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
